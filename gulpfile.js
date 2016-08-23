@@ -33,7 +33,7 @@ gulp.task('css',function() {
 		csswring()
 	]
 
-	return gulp.src('./src/trivia.css')
+	return gulp.src('./src/style.css')
 		.pipe(postcss(processors))
 		.pipe(gulp.dest('./assets/css'))
 		.pipe(browserSync.stream())
