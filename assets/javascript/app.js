@@ -25,7 +25,7 @@ $(document).on("ready",function(){
 				qid: 0,
 				question: "Who is the mascot of the university of Texas?",
 				answers: [{a:"Reveille",isCorrect:false,id:0},{a:"Bevo",isCorrect:true,id:1},{a:"Sammy",isCorrect:false,id:2},{a:"Shasta",isCorrect:false,id:3}],
-				pic: "assets/images/bevo.gif"
+				pic: "assets/images/bevo.jpg"
 			},
 			{
 				qid: 1,
