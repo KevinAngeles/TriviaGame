@@ -1,0 +1,9 @@
+:root {
+	--bg-body: #000;
+	--timerSize: 30;
+	--timerPadding: 5;
+	--titleSize: 40;
+	--titlePadding: 5;
+	--questionSize: 40;
+	--questionPadding: 5;
+}

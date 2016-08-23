@@ -12,9 +12,9 @@ $(document).on("ready",function(){
 	var timer;
 	var timerStarted = false;
 	var game = {
-		gameTime: 25,//total time in seconds
+		gameTime: 30,//total time per question in seconds
 		answerTime: 3,//waiting time after answer a question in seconds
-		timeLeft: 25,//total time left in seconds
+		timeLeft: 30,//total time left in seconds
 		correctAnswers : 0,
 		incorrectAnswers : 0,
 		questionsLeft: [],
@@ -51,8 +51,6 @@ $(document).on("ready",function(){
 			{
 				game.correctAnswers = 0;
 				game.incorrectAnswers = 0;
-				game.timeLeft = game.gameTime;
-				$("#timer").html( game.timeLeft + " seconds" );
 
 				//create an array with the index of the questions
 				game.questionsLeft = game.questions.map( function(element, index) {
@@ -62,6 +60,9 @@ $(document).on("ready",function(){
 				shuffleArr(game.questionsLeft);
 				game.gameStarted = true;
 			}
+	
+			game.timeLeft = game.gameTime;
+			$("#timer").html( "Time Remaining: " + game.timeLeft + " Seconds" );
 			
 			var selectedQuestion = game.questions[game.questionsLeft[0]];
 			var qid = selectedQuestion.qid;
@@ -74,7 +75,7 @@ $(document).on("ready",function(){
 			$("#question").html(selectedQuestion.question);
 
 			game.answersLeft.forEach( function(ans){
-				var a = $("<li data-val='" + selectedQuestion.answers[ans].id + "' data-qid='" + qid + "'>" + selectedQuestion.answers[ans].a + "</li>");
+				var a = $("<li class='Trivia-ul-li' data-val='" + selectedQuestion.answers[ans].id + "' data-qid='" + qid + "'>" + selectedQuestion.answers[ans].a + "</li>");
 				$("#options").append(a);
 			});
 			
@@ -89,7 +90,7 @@ $(document).on("ready",function(){
 			if(game.timeLeft>0)
 			{
 				game.timeLeft = game.timeLeft - 1;
-				$("#timer").html( game.timeLeft + " seconds" );
+				$("#timer").html( "Time Remaining: " + game.timeLeft + " Seconds" );
 			}
 			else
 			{
@@ -103,7 +104,7 @@ $(document).on("ready",function(){
 			timerStarted = false;
 		},
 		showResult: function(){
-			var msg = "Correct Answers: "+game.correctAnswers+" Incorrect Answers: "+game.incorrectAnswers+" Questions not answered: "+game.questionsLeft.length;
+			var msg = "<p>Correct Answers: "+game.correctAnswers+"</p><p>Incorrect Answers: "+game.incorrectAnswers+"</p><p>Questions not answered: "+game.questionsLeft.length+"</p>";
 			$("#timer").html(msg);
 			$("#question").html("");
 			$("#options").html("");
@@ -128,19 +129,23 @@ $(document).on("ready",function(){
 		
 		var msg = "";
 		//increase correct or incorrect counter
+		var figQuery = "<img src='"+game.questions[qid].pic+"' alt='"+"'>";
 		if( ans[0].isCorrect )
 		{
 			game.correctAnswers++;
 			msg = "Correct Answer!";
+			figQuery = figQuery + "<figcaption></figcaption>";
 		}
 		else
 		{
+			var correctAns = game.questions[qid].answers.filter(function(a){ return a["isCorrect"] == true; });
 			game.incorrectAnswers++;
 			msg = "Incorrect Answer";
+			figQuery = figQuery + "<figcaption class='Trivia-fig-figcaption'>The correct answer was " + correctAns[0]["a"]+"</figcaption>";
 		}
+		var fig = $(figQuery);
 		//show a message with the result
-		var img = $("<img src='"+game.questions[qid].pic+"' alt='"+"'><figcaption></figcaption>");
-		$("figure").append(img);
+		$("figure").append(fig);
 		$("#timer").html(msg);
 		$("#question").html("");
 		$("#options").html("");

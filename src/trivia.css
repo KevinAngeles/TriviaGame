@@ -1,0 +1,91 @@
+@import './variables.css';
+
+@lost flexbox flex;
+
+/* -- Custom Media queries */
+@custom-media --mobile (max-width: 500px);
+@custom-media --tablet (max-width: 650px);
+@custom-media --desktop (max-width: 800px);
+@custom-media --retina (-webkit-min-device-pixel-ratio: 2);
+
+/* -- Mixins */
+@define-mixin list $fontSize, $pad {
+	box-sizing: content-box;
+	border: none;
+	font: normal $(fontSize)px/1 "Monoton", Helvetica, sans-serif;
+	padding: $(pad)px;
+	color: rgba(255,255,255,1);
+	text-overflow: ellipsis;
+	text-shadow: 0 0 10px rgb(255,255,255) , 0 0 20px rgb(255,255,255) , 0 0 30px rgb(255,255,255) , 0 0 40px rgba(255,153,0,1) , 0 0 70px rgba(204,65,37,1) , 0 0 80px rgba(204,65,37,1) , 0 0 100px rgba(204,65,37,1) , 0 0 150px rgba(204,65,37,1) ;
+	transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+}
+
+@define-mixin listhover {
+	text-shadow: 0 0 5px rgb(255,255,255) , 0 0 10px rgb(255,255,255) , 0 0 15px rgb(255,255,255) , 0 0 20px rgba(204,65,37,1) , 0 0 35px rgba(204,65,37,1) , 0 0 40px rgba(204,65,37,1) , 0 0 50px rgba(204,65,37,1) , 0 0 75px rgba(204,65,37,1) ;
+}
+
+body {
+	background-color: var(--bg-body);
+}
+
+.Trivia {
+	text-align: center;
+	&-fig {
+		&-figcaption {
+			color: #fff;
+			font-size: calc(var(--questionSize)-10)px;
+		}
+	}
+	&-header {
+		display: inline-block;
+		width: 100%;
+		&-title {
+			text-align: center;
+			@mixin list var(--titleSize), var(--titlePadding);
+		}
+	}
+	&-timer {
+		color: #fff;
+		@mixin list var(--timerSize), var(--timerPadding);
+		&:hover {
+			@mixin listhover;
+		}
+	}
+	&-question {
+		/*@mixin list var(--questionSize), var(--questionPadding);*/
+		color: #fff;
+		font-size: calc(var(--questionSize)-10)px;
+	}
+	&-ul {
+		&-li {
+			cursor: pointer;
+			color: #fff;
+			text-align: center;
+			font-size: calc(var(--questionSize)-10)px;
+			list-style-type: none;
+			&:hover {
+				@mixin list var(--questionSize), var(--questionPadding);
+				/*@mixin listhover;*/
+			}
+		}
+	}
+	&-form {
+		text-align: center;
+		&-btn {
+			background: #d98f34;
+			background-image: linear-gradient(to bottom, #d98f34, #b86d2b);
+			border-radius: 28px;
+			text-shadow: 0px 3px 3px #666666;
+			font-family: Arial;
+			color: #ffffff;
+			cursor: pointer;
+			font-size: 20px;
+			padding: 10px 20px 10px 20px;
+			text-decoration: none;		
+			&:hover {
+				background: #fc893c;
+				text-decoration: none;
+			}
+		}
+	}
+}

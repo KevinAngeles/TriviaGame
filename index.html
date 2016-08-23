@@ -2,18 +2,23 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Document</title>
+		<title>University of Texas Trivia</title>
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="stylesheet" href="assets/css/trivia.css">
 		<script src="assets/javascript/game.js"></script>
 	</head>
 	<body>
-		<div id="timer">25 seconds</div>
-		<h2 id="question" class="txt"></h2>
-		<ul id="options" class="txt"></ul>
-		<figure></figure>
-		<form action="" id="form">
-			<button id="start">Start</button>
-		</form>
+		<section class="Trivia">
+			<header class="Trivia-header">
+				<h1 id="title" class="Trivia-header-title">University of Texas Trivia</h1>
+			</header>
+			<h2 id="timer" class="Trivia-timer"></h2>
+			<h3 id="question" class="Trivia-question"></h3>
+			<ul id="options" class="Trivia-ul"></ul>
+			<figure class="Trivia-fig"></figure>
+			<form action="" id="form" class="Trivia-form">
+				<button id="start" class="Trivia-form-btn">Start</button>
+			</form>
+		</section>
 	</body>
 </html>
